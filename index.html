@@ -1,0 +1,958 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>AI Project Studio | Next-Gen SaaS Platform</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #ff6b6b;
+            --primary-dark: #ff5252;
+            --secondary: #4ecdc4;
+            --secondary-dark: #45b7aa;
+            --accent: #ffe66d;
+            --dark: #1a1a2e;
+            --darker: #0f0f1f;
+            --light: #ffffff;
+            --glass-bg: rgba(255, 255, 255, 0.08);
+            --glass-border: rgba(255, 255, 255, 0.15);
+            --shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+            --gradient-1: linear-gradient(135deg, #ff6b6b 0%, #4ecdc4 100%);
+            --gradient-2: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            --gradient-3: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background: linear-gradient(135deg, #0f0f1f 0%, #1a1a2e 50%, #16213e 100%);
+            color: var(--light);
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 20% 50%, rgba(255,107,107,0.1) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        body::after {
+            content: '';
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 80% 80%, rgba(78,205,196,0.1) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .app-container {
+            display: flex;
+            min-height: 100vh;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 280px;
+            background: rgba(26, 26, 46, 0.9);
+            backdrop-filter: blur(20px);
+            border-right: 1px solid var(--glass-border);
+            display: flex;
+            flex-direction: column;
+            position: fixed;
+            height: 100vh;
+            transition: transform 0.3s ease;
+            z-index: 1000;
+            box-shadow: var(--shadow);
+        }
+
+        .sidebar-header {
+            padding: 2rem 1.5rem;
+            font-size: 1.5rem;
+            font-weight: bold;
+            border-bottom: 1px solid var(--glass-border);
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .sidebar-header i {
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            background-clip: text;
+            margin-right: 0.5rem;
+        }
+
+        .sidebar-nav {
+            flex: 1;
+            padding: 2rem 0;
+        }
+
+        .nav-item {
+            width: 100%;
+            padding: 1rem 1.5rem;
+            background: none;
+            border: none;
+            color: rgba(255, 255, 255, 0.7);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+            position: relative;
+        }
+
+        .nav-item:hover {
+            color: white;
+            background: rgba(255, 255, 255, 0.05);
+            padding-left: 2rem;
+        }
+
+        .nav-item.active {
+            color: white;
+            background: linear-gradient(90deg, rgba(255,107,107,0.2), transparent);
+            border-left: 3px solid var(--primary);
+        }
+
+        .nav-item i {
+            width: 24px;
+            font-size: 1.2rem;
+        }
+
+        .sidebar-footer {
+            padding: 1.5rem;
+            border-top: 1px solid var(--glass-border);
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.75rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 0.75rem;
+        }
+
+        .user-info i {
+            font-size: 1.5rem;
+            color: var(--primary);
+        }
+
+        /* Main Content */
+        .main-content {
+            flex: 1;
+            margin-left: 280px;
+            padding: 1.5rem;
+        }
+
+        .glass-header {
+            background: rgba(26, 26, 46, 0.7);
+            backdrop-filter: blur(20px);
+            border-radius: 1.5rem;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            border: 1px solid var(--glass-border);
+            box-shadow: var(--shadow);
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .header-actions {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .header-btn {
+            padding: 0.6rem 1.25rem;
+            border-radius: 0.75rem;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .header-btn.primary {
+            background: var(--gradient-1);
+            color: white;
+        }
+
+        .header-btn.outline {
+            background: transparent;
+            border: 1px solid var(--glass-border);
+            color: white;
+        }
+
+        .header-btn.ghost {
+            background: transparent;
+            color: white;
+        }
+
+        .mobile-menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Glass Card */
+        .glass-card {
+            background: rgba(26, 26, 46, 0.6);
+            backdrop-filter: blur(20px);
+            border-radius: 1.5rem;
+            padding: 2rem;
+            border: 1px solid var(--glass-border);
+            box-shadow: var(--shadow);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .glass-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 48px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Dashboard Grid */
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+
+        .input-card, .settings-card, .output-card {
+            grid-column: span 1;
+        }
+
+        .output-card {
+            grid-column: span 2;
+        }
+
+        textarea {
+            width: 100%;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--glass-border);
+            border-radius: 1rem;
+            color: white;
+            font-size: 1rem;
+            resize: vertical;
+            font-family: inherit;
+            transition: all 0.3s ease;
+        }
+
+        textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .input-actions {
+            display: flex;
+            gap: 0.75rem;
+            margin-top: 1rem;
+        }
+
+        .icon-btn {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid var(--glass-border);
+            padding: 0.6rem 1.2rem;
+            border-radius: 0.75rem;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+        .icon-btn:hover {
+            background: var(--gradient-1);
+            transform: translateY(-2px);
+        }
+
+        .glass-select {
+            width: 100%;
+            padding: 0.75rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--glass-border);
+            border-radius: 0.75rem;
+            color: white;
+            font-size: 1rem;
+            cursor: pointer;
+        }
+
+        .plan-indicator {
+            background: linear-gradient(135deg, rgba(255,107,107,0.2), rgba(78,205,196,0.2));
+            padding: 0.75rem;
+            border-radius: 0.75rem;
+            margin: 1rem 0;
+            text-align: center;
+            font-size: 0.875rem;
+            border: 1px solid var(--glass-border);
+        }
+
+        .btn-primary {
+            background: var(--gradient-1);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 0.75rem;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            width: 100%;
+            font-size: 1rem;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(255,107,107,0.4);
+        }
+
+        .output-content {
+            min-height: 250px;
+            padding: 1.5rem;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 1rem;
+            margin-bottom: 1rem;
+            border: 1px solid var(--glass-border);
+            line-height: 1.6;
+        }
+
+        .placeholder {
+            color: rgba(255, 255, 255, 0.5);
+            text-align: center;
+        }
+
+        .output-buttons {
+            display: flex;
+            gap: 0.75rem;
+            justify-content: flex-end;
+        }
+
+        .secondary-btn {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid var(--glass-border);
+            padding: 0.6rem 1.2rem;
+            border-radius: 0.75rem;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .secondary-btn:hover {
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        /* Auth Section */
+        .auth-wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 80vh;
+        }
+
+        .auth-container {
+            width: 100%;
+            max-width: 450px;
+        }
+
+        .auth-card h2 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .subtitle {
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 2rem;
+        }
+
+        .input-field {
+            position: relative;
+            margin-bottom: 1.5rem;
+        }
+
+        .input-field i {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .input-field input {
+            width: 100%;
+            padding: 0.75rem 1rem 0.75rem 2.5rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--glass-border);
+            border-radius: 0.75rem;
+            color: white;
+            font-size: 1rem;
+        }
+
+        .input-field input:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        .auth-links {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 1.5rem;
+        }
+
+        .auth-links a {
+            color: var(--secondary);
+            text-decoration: none;
+            font-size: 0.875rem;
+        }
+
+        /* Pricing */
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            padding: 1rem;
+        }
+
+        .pricing-card {
+            background: rgba(26, 26, 46, 0.7);
+            backdrop-filter: blur(20px);
+            border-radius: 1.5rem;
+            padding: 2rem;
+            text-align: center;
+            position: relative;
+            transition: all 0.3s ease;
+            border: 1px solid var(--glass-border);
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary);
+        }
+
+        .pricing-card.featured {
+            transform: scale(1.05);
+            border: 2px solid var(--primary);
+            background: rgba(255,107,107,0.1);
+        }
+
+        .popular-badge {
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--gradient-1);
+            padding: 0.25rem 1rem;
+            border-radius: 2rem;
+            font-size: 0.75rem;
+            font-weight: bold;
+        }
+
+        .price {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin: 1rem 0;
+        }
+
+        .price span {
+            font-size: 1rem;
+            opacity: 0.7;
+        }
+
+        .old-price {
+            text-decoration: line-through;
+            font-size: 1rem;
+            opacity: 0.5;
+            margin-right: 0.5rem;
+        }
+
+        .pricing-card ul {
+            list-style: none;
+            margin: 1.5rem 0;
+        }
+
+        .pricing-card li {
+            padding: 0.5rem 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .pricing-card li i {
+            color: var(--secondary);
+        }
+
+        /* History */
+        .history-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .history-item {
+            background: rgba(255, 255, 255, 0.03);
+            padding: 1rem;
+            border-radius: 1rem;
+            border-left: 3px solid var(--primary);
+            transition: all 0.3s ease;
+        }
+
+        .history-item:hover {
+            background: rgba(255, 255, 255, 0.05);
+            transform: translateX(5px);
+        }
+
+        .history-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+            font-size: 0.875rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        /* Settings */
+        .settings-item {
+            margin-bottom: 1.5rem;
+        }
+
+        .settings-item label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: var(--secondary);
+        }
+
+        .settings-value {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .tiny-btn {
+            padding: 0.25rem 0.75rem;
+            background: var(--gradient-1);
+            border: none;
+            border-radius: 0.5rem;
+            color: white;
+            cursor: pointer;
+        }
+
+        .danger-btn {
+            background: linear-gradient(135deg, #ff6b6b, #ff4757);
+            color: white;
+            padding: 0.75rem;
+            border: none;
+            border-radius: 0.75rem;
+            width: 100%;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        /* Toast */
+        .toast-container {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            z-index: 2000;
+        }
+
+        .toast {
+            background: rgba(26, 26, 46, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 1.5rem;
+            border-radius: 0.75rem;
+            margin-top: 0.5rem;
+            animation: slideIn 0.3s ease;
+            border-left: 3px solid var(--primary);
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        /* Loading Spinner */
+        .loading-spinner {
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .loading-spinner::after {
+            content: '';
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-top-color: var(--primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .sidebar {
+                transform: translateX(-100%);
+            }
+            
+            .sidebar.active {
+                transform: translateX(0);
+            }
+            
+            .main-content {
+                margin-left: 0;
+            }
+            
+            .mobile-menu-toggle {
+                display: block;
+            }
+            
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .input-card, .settings-card, .output-card {
+                grid-column: span 1;
+            }
+            
+            .pricing-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .pricing-card.featured {
+                transform: scale(1);
+            }
+            
+            .glass-header {
+                padding: 1rem;
+            }
+            
+            .logo {
+                font-size: 1.2rem;
+            }
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        hr {
+            margin: 1rem 0;
+            border-color: var(--glass-border);
+        }
+
+        .full-width {
+            grid-column: span 2;
+        }
+
+        @media (max-width: 768px) {
+            .full-width {
+                grid-column: span 1;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .glass-card {
+            animation: fadeInUp 0.6s ease;
+        }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <i class="fas fa-magic"></i>
+                <span>AI Studio</span>
+            </div>
+            <nav class="sidebar-nav">
+                <button class="nav-item" data-view="generate">
+                    <i class="fas fa-bolt"></i>
+                    <span>Generate</span>
+                </button>
+                <button class="nav-item" data-view="history">
+                    <i class="fas fa-clock"></i>
+                    <span>History</span>
+                </button>
+                <button class="nav-item" data-view="pricing">
+                    <i class="fas fa-crown"></i>
+                    <span>Pricing</span>
+                </button>
+                <button class="nav-item" data-view="settings">
+                    <i class="fas fa-sliders-h"></i>
+                    <span>Settings</span>
+                </button>
+                <button class="nav-item logout-btn" id="logoutBtn">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Exit</span>
+                </button>
+            </nav>
+            <div class="sidebar-footer">
+                <div class="user-info">
+                    <i class="fas fa-user-circle"></i>
+                    <span id="sidebarUserName">Guest</span>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="glass-header">
+                <button class="mobile-menu-toggle" id="mobileMenuToggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <div class="logo">✨ AI Project Studio</div>
+                <div class="header-actions">
+                    <button class="header-btn ghost" id="pricingHeaderBtn">
+                        <i class="fas fa-gem"></i> Premium
+                    </button>
+                    <button class="header-btn primary" id="loginHeaderBtn">Login</button>
+                    <button class="header-btn outline" id="signupHeaderBtn">Sign Up</button>
+                    <div class="profile-icon hidden" id="profileIcon">
+                        <i class="fas fa-user-astronaut"></i>
+                    </div>
+                </div>
+            </header>
+
+            <div id="appViews">
+                <!-- Auth Section -->
+                <div id="authSection" class="auth-wrapper">
+                    <div class="auth-container">
+                        <div class="glass-card auth-card" id="loginCard">
+                            <h2>Welcome Back</h2>
+                            <p class="subtitle">Continue your creative journey</p>
+                            <form id="loginForm">
+                                <div class="input-field">
+                                    <i class="fas fa-envelope"></i>
+                                    <input type="email" id="loginEmail" placeholder="Email address" required>
+                                </div>
+                                <div class="input-field">
+                                    <i class="fas fa-lock"></i>
+                                    <input type="password" id="loginPassword" placeholder="Password" required>
+                                </div>
+                                <button type="submit" class="btn-primary">Login →</button>
+                                <div class="auth-links">
+                                    <a href="#" id="forgotPasswordLink">Forgot password?</a>
+                                    <a href="#" id="showSignupLink">Create account</a>
+                                </div>
+                            </form>
+                        </div>
+
+                        <div class="glass-card auth-card hidden" id="signupCard">
+                            <h2>Create Account</h2>
+                            <p class="subtitle">Start your AI adventure</p>
+                            <form id="signupForm">
+                                <div class="input-field">
+                                    <i class="fas fa-user"></i>
+                                    <input type="text" id="signupName" placeholder="Full name" required>
+                                </div>
+                                <div class="input-field">
+                                    <i class="fas fa-envelope"></i>
+                                    <input type="email" id="signupEmail" placeholder="Email address" required>
+                                </div>
+                                <div class="input-field">
+                                    <i class="fas fa-lock"></i>
+                                    <input type="password" id="signupPassword" placeholder="Password (min 6)" required>
+                                </div>
+                                <button type="submit" class="btn-primary">Sign Up →</button>
+                                <div class="auth-links">
+                                    <a href="#" id="showLoginLink">Already have an account?</a>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Generate View -->
+                <div id="generateView" class="view-container hidden">
+                    <div class="dashboard-grid">
+                        <div class="glass-card input-card">
+                            <h3><i class="fas fa-feather-alt"></i> Project Idea</h3>
+                            <textarea id="projectInput" rows="5" placeholder="Describe your project idea, requirements, or content..."></textarea>
+                            <div class="input-actions">
+                                <button class="icon-btn" id="voiceInputBtn"><i class="fas fa-microphone"></i> Voice</button>
+                                <button class="icon-btn" id="fileUploadBtn"><i class="fas fa-upload"></i> Upload .txt</button>
+                                <input type="file" id="txtFileInput" accept=".txt" style="display: none">
+                            </div>
+                        </div>
+
+                        <div class="glass-card settings-card">
+                            <h3><i class="fas fa-sliders-h"></i> Configuration</h3>
+                            <div class="form-group">
+                                <label style="display:block; margin-bottom:0.5rem;">Software Format</label>
+                                <select id="softwareType" class="glass-select">
+                                    <option value="Microsoft Word">📄 Microsoft Word</option>
+                                    <option value="Microsoft Excel">📊 Microsoft Excel</option>
+                                    <option value="Microsoft PowerPoint">🎨 Microsoft PowerPoint</option>
+                                    <option value="Google Docs">📝 Google Docs</option>
+                                    <option value="Google Sheets">📈 Google Sheets</option>
+                                    <option value="LibreOffice">✍️ LibreOffice</option>
+                                    <option value="QuickBooks">💰 QuickBooks</option>
+                                    <option value="Notepad">📓 Notepad</option>
+                                </select>
+                            </div>
+                            <div class="plan-indicator" id="planIndicator">
+                                <i class="fas fa-star"></i> Free Plan - 500 char limit
+                            </div>
+                            <button class="btn-primary" id="generateBtn">
+                                <i class="fas fa-magic"></i> Generate Project
+                            </button>
+                        </div>
+
+                        <div class="glass-card output-card">
+                            <h3><i class="fas fa-code"></i> AI Generated Content</h3>
+                            <div id="outputContent" class="output-content">
+                                <p class="placeholder">✨ Your AI-generated masterpiece will appear here</p>
+                            </div>
+                            <div class="output-buttons hidden" id="outputButtons">
+                                <button class="secondary-btn" id="copyOutputBtn"><i class="far fa-copy"></i> Copy</button>
+                                <button class="secondary-btn" id="downloadOutputBtn"><i class="fas fa-download"></i> Download</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- History View -->
+                <div id="historyView" class="view-container hidden">
+                    <div class="glass-card">
+                        <h2><i class="fas fa-history"></i> Your Creative Journey</h2>
+                        <div id="historyList" class="history-list" style="margin-top:1.5rem;"></div>
+                    </div>
+                </div>
+
+                <!-- Pricing View -->
+                <div id="pricingView" class="view-container hidden">
+                    <div class="pricing-grid">
+                        <div class="pricing-card">
+                            <h3>Starter</h3>
+                            <div class="price">₹0<span>/forever</span></div>
+                            <ul>
+                                <li><i class="fas fa-check-circle"></i> 500 characters limit</li>
+                                <li><i class="fas fa-check-circle"></i> Basic AI generation</li>
+                                <li><i class="fas fa-check-circle"></i> 7-day history</li>
+                            </ul>
+                            <button class="secondary-btn" disabled>Current Plan</button>
+                        </div>
+                        <div class="pricing-card featured">
+                            <div class="popular-badge">🔥 HOT DEAL</div>
+                            <h3>Pro Monthly</h3>
+                            <div class="price"><span class="old-price">₹499</span> ₹99<span>/month</span></div>
+                            <ul>
+                                <li><i class="fas fa-check-circle"></i> Unlimited characters</li>
+                                <li><i class="fas fa-check-circle"></i> Priority AI engine</li>
+                                <li><i class="fas fa-check-circle"></i> Unlimited history</li>
+                                <li><i class="fas fa-check-circle"></i> Premium support</li>
+                            </ul>
+                            <button class="btn-primary upgrade-btn" data-plan="monthly">Upgrade Now</button>
+                        </div>
+                        <div class="pricing-card">
+                            <h3>6 Months</h3>
+                            <div class="price"><span class="old-price">₹999</span> ₹199<span>/6mo</span></div>
+                            <ul>
+                                <li><i class="fas fa-check-circle"></i> All Pro features</li>
+                                <li><i class="fas fa-check-circle"></i> Save 40%</li>
+                                <li><i class="fas fa-check-circle"></i> Priority support</li>
+                            </ul>
+                            <button class="btn-primary upgrade-btn" data-plan="6months">Get Offer</button>
+                        </div>
+                        <div class="pricing-card">
+                            <h3>Lifetime</h3>
+                            <div class="price"><span class="old-price">₹1199</span> ₹299<span>/lifetime</span></div>
+                            <ul>
+                                <li><i class="fas fa-check-circle"></i> Lifetime access</li>
+                                <li><i class="fas fa-check-circle"></i> All future updates</li>
+                                <li><i class="fas fa-check-circle"></i> VIP support</li>
+                            </ul>
+                            <button class="btn-primary upgrade-btn" data-plan="lifetime">Limited Offer</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Settings View -->
+                <div id="settingsView" class="view-container hidden">
+                    <div class="glass-card">
+                        <h2><i class="fas fa-user-cog"></i> Account Preferences</h2>
+                        <div class="settings-item">
+                            <label>Current Plan</label>
+                            <div class="settings-value">
+                                <span id="settingsPlan">Free</span>
+                                <button class="tiny-btn" id="settingsUpgradeBtn">Upgrade</button>
+                            </div>
+                        </div>
+                        <div class="settings-item">
+                            <label>Email Address</label>
+                            <span id="settingsEmail">user@example.com</span>
+                        </div>
+                        <div class="settings-item">
+                            <label>New Password</label>
+                            <input type="password" id="newPassword" placeholder="Enter new password" style="width:100%; padding:0.75rem; background:rgba(255,255,255,0.05); border:1px solid var(--glass-border); border-radius:0.75rem; color:white;">
+                            <button class="secondary-btn" id="changePasswordBtn" style="margin-top:0.5rem;">Update Password</button>
+                        </div>
+                        <hr>
+                        <button class="danger-btn" id="settingsLogoutBtn">
+                            <i class="fas fa-sign-out-alt"></i> Logout
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <div id="toastContainer" class="toast-container"></div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="app.js"></script>
+</body>
+</html>
