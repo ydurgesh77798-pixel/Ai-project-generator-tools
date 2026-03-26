@@ -711,111 +711,62 @@
 </head>
 <body>
     <div class="app-container">
-        <!-- Sidebar -->
         <aside class="sidebar" id="sidebar">
             <div class="sidebar-header">
                 <i class="fas fa-magic"></i>
                 <span>AI Studio</span>
             </div>
             <nav class="sidebar-nav">
-                <button class="nav-item" data-view="generate">
-                    <i class="fas fa-bolt"></i>
-                    <span>Generate</span>
-                </button>
-                <button class="nav-item" data-view="history">
-                    <i class="fas fa-clock"></i>
-                    <span>History</span>
-                </button>
-                <button class="nav-item" data-view="pricing">
-                    <i class="fas fa-crown"></i>
-                    <span>Pricing</span>
-                </button>
-                <button class="nav-item" data-view="settings">
-                    <i class="fas fa-sliders-h"></i>
-                    <span>Settings</span>
-                </button>
-                <button class="nav-item logout-btn" id="logoutBtn">
-                    <i class="fas fa-sign-out-alt"></i>
-                    <span>Exit</span>
-                </button>
+                <button class="nav-item" data-view="generate"><i class="fas fa-bolt"></i><span>Generate</span></button>
+                <button class="nav-item" data-view="history"><i class="fas fa-clock"></i><span>History</span></button>
+                <button class="nav-item" data-view="pricing"><i class="fas fa-crown"></i><span>Pricing</span></button>
+                <button class="nav-item" data-view="settings"><i class="fas fa-sliders-h"></i><span>Settings</span></button>
+                <button class="nav-item logout-btn" id="logoutBtn"><i class="fas fa-sign-out-alt"></i><span>Exit</span></button>
             </nav>
             <div class="sidebar-footer">
-                <div class="user-info">
-                    <i class="fas fa-user-circle"></i>
-                    <span id="sidebarUserName">Guest</span>
-                </div>
+                <div class="user-info"><i class="fas fa-user-circle"></i><span id="sidebarUserName">Guest</span></div>
             </div>
         </aside>
 
-        <!-- Main Content -->
         <main class="main-content">
             <header class="glass-header">
-                <button class="mobile-menu-toggle" id="mobileMenuToggle">
-                    <i class="fas fa-bars"></i>
-                </button>
+                <button class="mobile-menu-toggle" id="mobileMenuToggle"><i class="fas fa-bars"></i></button>
                 <div class="logo">✨ AI Project Studio</div>
                 <div class="header-actions">
-                    <button class="header-btn ghost" id="pricingHeaderBtn">
-                        <i class="fas fa-gem"></i> Premium
-                    </button>
+                    <button class="header-btn ghost" id="pricingHeaderBtn"><i class="fas fa-gem"></i> Premium</button>
                     <button class="header-btn primary" id="loginHeaderBtn">Login</button>
                     <button class="header-btn outline" id="signupHeaderBtn">Sign Up</button>
-                    <div class="profile-icon hidden" id="profileIcon">
-                        <i class="fas fa-user-astronaut"></i>
-                    </div>
+                    <div class="profile-icon hidden" id="profileIcon"><i class="fas fa-user-astronaut"></i></div>
                 </div>
             </header>
 
             <div id="appViews">
-                <!-- Auth Section -->
                 <div id="authSection" class="auth-wrapper">
                     <div class="auth-container">
                         <div class="glass-card auth-card" id="loginCard">
                             <h2>Welcome Back</h2>
                             <p class="subtitle">Continue your creative journey</p>
                             <form id="loginForm">
-                                <div class="input-field">
-                                    <i class="fas fa-envelope"></i>
-                                    <input type="email" id="loginEmail" placeholder="Email address" required>
-                                </div>
-                                <div class="input-field">
-                                    <i class="fas fa-lock"></i>
-                                    <input type="password" id="loginPassword" placeholder="Password" required>
-                                </div>
+                                <div class="input-field"><i class="fas fa-envelope"></i><input type="email" id="loginEmail" placeholder="Email address" required></div>
+                                <div class="input-field"><i class="fas fa-lock"></i><input type="password" id="loginPassword" placeholder="Password" required></div>
                                 <button type="submit" class="btn-primary">Login →</button>
-                                <div class="auth-links">
-                                    <a href="#" id="forgotPasswordLink">Forgot password?</a>
-                                    <a href="#" id="showSignupLink">Create account</a>
-                                </div>
+                                <div class="auth-links"><a href="#" id="forgotPasswordLink">Forgot password?</a><a href="#" id="showSignupLink">Create account</a></div>
                             </form>
                         </div>
-
                         <div class="glass-card auth-card hidden" id="signupCard">
                             <h2>Create Account</h2>
                             <p class="subtitle">Start your AI adventure</p>
                             <form id="signupForm">
-                                <div class="input-field">
-                                    <i class="fas fa-user"></i>
-                                    <input type="text" id="signupName" placeholder="Full name" required>
-                                </div>
-                                <div class="input-field">
-                                    <i class="fas fa-envelope"></i>
-                                    <input type="email" id="signupEmail" placeholder="Email address" required>
-                                </div>
-                                <div class="input-field">
-                                    <i class="fas fa-lock"></i>
-                                    <input type="password" id="signupPassword" placeholder="Password (min 6)" required>
-                                </div>
+                                <div class="input-field"><i class="fas fa-user"></i><input type="text" id="signupName" placeholder="Full name" required></div>
+                                <div class="input-field"><i class="fas fa-envelope"></i><input type="email" id="signupEmail" placeholder="Email address" required></div>
+                                <div class="input-field"><i class="fas fa-lock"></i><input type="password" id="signupPassword" placeholder="Password (min 6)" required></div>
                                 <button type="submit" class="btn-primary">Sign Up →</button>
-                                <div class="auth-links">
-                                    <a href="#" id="showLoginLink">Already have an account?</a>
-                                </div>
+                                <div class="auth-links"><a href="#" id="showLoginLink">Already have an account?</a></div>
                             </form>
                         </div>
                     </div>
                 </div>
 
-                <!-- Generate View -->
                 <div id="generateView" class="view-container hidden">
                     <div class="dashboard-grid">
                         <div class="glass-card input-card">
@@ -827,132 +778,188 @@
                                 <input type="file" id="txtFileInput" accept=".txt" style="display: none">
                             </div>
                         </div>
-
                         <div class="glass-card settings-card">
                             <h3><i class="fas fa-sliders-h"></i> Configuration</h3>
-                            <div class="form-group">
-                                <label style="display:block; margin-bottom:0.5rem;">Software Format</label>
-                                <select id="softwareType" class="glass-select">
-                                    <option value="Microsoft Word">📄 Microsoft Word</option>
-                                    <option value="Microsoft Excel">📊 Microsoft Excel</option>
-                                    <option value="Microsoft PowerPoint">🎨 Microsoft PowerPoint</option>
-                                    <option value="Google Docs">📝 Google Docs</option>
-                                    <option value="Google Sheets">📈 Google Sheets</option>
-                                    <option value="LibreOffice">✍️ LibreOffice</option>
-                                    <option value="QuickBooks">💰 QuickBooks</option>
-                                    <option value="Notepad">📓 Notepad</option>
-                                </select>
-                            </div>
-                            <div class="plan-indicator" id="planIndicator">
-                                <i class="fas fa-star"></i> Free Plan - 500 char limit
-                            </div>
-                            <button class="btn-primary" id="generateBtn">
-                                <i class="fas fa-magic"></i> Generate Project
-                            </button>
+                            <div class="form-group"><label style="display:block; margin-bottom:0.5rem;">Software Format</label><select id="softwareType" class="glass-select"><option value="Microsoft Word">📄 Microsoft Word</option><option value="Microsoft Excel">📊 Microsoft Excel</option><option value="Microsoft PowerPoint">🎨 Microsoft PowerPoint</option><option value="Google Docs">📝 Google Docs</option><option value="Google Sheets">📈 Google Sheets</option><option value="LibreOffice">✍️ LibreOffice</option><option value="QuickBooks">💰 QuickBooks</option><option value="Notepad">📓 Notepad</option></select></div>
+                            <div class="plan-indicator" id="planIndicator"><i class="fas fa-star"></i> Free Plan - 500 char limit</div>
+                            <button class="btn-primary" id="generateBtn"><i class="fas fa-magic"></i> Generate Project</button>
                         </div>
-
                         <div class="glass-card output-card">
                             <h3><i class="fas fa-code"></i> AI Generated Content</h3>
-                            <div id="outputContent" class="output-content">
-                                <p class="placeholder">✨ Your AI-generated masterpiece will appear here</p>
-                            </div>
-                            <div class="output-buttons hidden" id="outputButtons">
-                                <button class="secondary-btn" id="copyOutputBtn"><i class="far fa-copy"></i> Copy</button>
-                                <button class="secondary-btn" id="downloadOutputBtn"><i class="fas fa-download"></i> Download</button>
-                            </div>
+                            <div id="outputContent" class="output-content"><p class="placeholder">✨ Your AI-generated masterpiece will appear here</p></div>
+                            <div class="output-buttons hidden" id="outputButtons"><button class="secondary-btn" id="copyOutputBtn"><i class="far fa-copy"></i> Copy</button><button class="secondary-btn" id="downloadOutputBtn"><i class="fas fa-download"></i> Download</button></div>
                         </div>
                     </div>
                 </div>
 
-                <!-- History View -->
-                <div id="historyView" class="view-container hidden">
-                    <div class="glass-card">
-                        <h2><i class="fas fa-history"></i> Your Creative Journey</h2>
-                        <div id="historyList" class="history-list" style="margin-top:1.5rem;"></div>
-                    </div>
-                </div>
-
-                <!-- Pricing View -->
-                <div id="pricingView" class="view-container hidden">
-                    <div class="pricing-grid">
-                        <div class="pricing-card">
-                            <h3>Starter</h3>
-                            <div class="price">₹0<span>/forever</span></div>
-                            <ul>
-                                <li><i class="fas fa-check-circle"></i> 500 characters limit</li>
-                                <li><i class="fas fa-check-circle"></i> Basic AI generation</li>
-                                <li><i class="fas fa-check-circle"></i> 7-day history</li>
-                            </ul>
-                            <button class="secondary-btn" disabled>Current Plan</button>
-                        </div>
-                        <div class="pricing-card featured">
-                            <div class="popular-badge">🔥 HOT DEAL</div>
-                            <h3>Pro Monthly</h3>
-                            <div class="price"><span class="old-price">₹499</span> ₹99<span>/month</span></div>
-                            <ul>
-                                <li><i class="fas fa-check-circle"></i> Unlimited characters</li>
-                                <li><i class="fas fa-check-circle"></i> Priority AI engine</li>
-                                <li><i class="fas fa-check-circle"></i> Unlimited history</li>
-                                <li><i class="fas fa-check-circle"></i> Premium support</li>
-                            </ul>
-                            <button class="btn-primary upgrade-btn" data-plan="monthly">Upgrade Now</button>
-                        </div>
-                        <div class="pricing-card">
-                            <h3>6 Months</h3>
-                            <div class="price"><span class="old-price">₹999</span> ₹199<span>/6mo</span></div>
-                            <ul>
-                                <li><i class="fas fa-check-circle"></i> All Pro features</li>
-                                <li><i class="fas fa-check-circle"></i> Save 40%</li>
-                                <li><i class="fas fa-check-circle"></i> Priority support</li>
-                            </ul>
-                            <button class="btn-primary upgrade-btn" data-plan="6months">Get Offer</button>
-                        </div>
-                        <div class="pricing-card">
-                            <h3>Lifetime</h3>
-                            <div class="price"><span class="old-price">₹1199</span> ₹299<span>/lifetime</span></div>
-                            <ul>
-                                <li><i class="fas fa-check-circle"></i> Lifetime access</li>
-                                <li><i class="fas fa-check-circle"></i> All future updates</li>
-                                <li><i class="fas fa-check-circle"></i> VIP support</li>
-                            </ul>
-                            <button class="btn-primary upgrade-btn" data-plan="lifetime">Limited Offer</button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Settings View -->
-                <div id="settingsView" class="view-container hidden">
-                    <div class="glass-card">
-                        <h2><i class="fas fa-user-cog"></i> Account Preferences</h2>
-                        <div class="settings-item">
-                            <label>Current Plan</label>
-                            <div class="settings-value">
-                                <span id="settingsPlan">Free</span>
-                                <button class="tiny-btn" id="settingsUpgradeBtn">Upgrade</button>
-                            </div>
-                        </div>
-                        <div class="settings-item">
-                            <label>Email Address</label>
-                            <span id="settingsEmail">user@example.com</span>
-                        </div>
-                        <div class="settings-item">
-                            <label>New Password</label>
-                            <input type="password" id="newPassword" placeholder="Enter new password" style="width:100%; padding:0.75rem; background:rgba(255,255,255,0.05); border:1px solid var(--glass-border); border-radius:0.75rem; color:white;">
-                            <button class="secondary-btn" id="changePasswordBtn" style="margin-top:0.5rem;">Update Password</button>
-                        </div>
-                        <hr>
-                        <button class="danger-btn" id="settingsLogoutBtn">
-                            <i class="fas fa-sign-out-alt"></i> Logout
-                        </button>
-                    </div>
-                </div>
+                <div id="historyView" class="view-container hidden"><div class="glass-card"><h2><i class="fas fa-history"></i> Your Creative Journey</h2><div id="historyList" class="history-list" style="margin-top:1.5rem;"></div></div></div>
+                <div id="pricingView" class="view-container hidden"><div class="pricing-grid"><div class="pricing-card"><h3>Starter</h3><div class="price">₹0<span>/forever</span></div><ul><li><i class="fas fa-check-circle"></i> 500 characters limit</li><li><i class="fas fa-check-circle"></i> Basic AI generation</li><li><i class="fas fa-check-circle"></i> 7-day history</li></ul><button class="secondary-btn" disabled>Current Plan</button></div><div class="pricing-card featured"><div class="popular-badge">🔥 HOT DEAL</div><h3>Pro Monthly</h3><div class="price"><span class="old-price">₹499</span> ₹99<span>/month</span></div><ul><li><i class="fas fa-check-circle"></i> Unlimited characters</li><li><i class="fas fa-check-circle"></i> Priority AI engine</li><li><i class="fas fa-check-circle"></i> Unlimited history</li><li><i class="fas fa-check-circle"></i> Premium support</li></ul><button class="btn-primary upgrade-btn" data-plan="monthly">Upgrade Now</button></div><div class="pricing-card"><h3>6 Months</h3><div class="price"><span class="old-price">₹999</span> ₹199<span>/6mo</span></div><ul><li><i class="fas fa-check-circle"></i> All Pro features</li><li><i class="fas fa-check-circle"></i> Save 40%</li><li><i class="fas fa-check-circle"></i> Priority support</li></ul><button class="btn-primary upgrade-btn" data-plan="6months">Get Offer</button></div><div class="pricing-card"><h3>Lifetime</h3><div class="price"><span class="old-price">₹1199</span> ₹299<span>/lifetime</span></div><ul><li><i class="fas fa-check-circle"></i> Lifetime access</li><li><i class="fas fa-check-circle"></i> All future updates</li><li><i class="fas fa-check-circle"></i> VIP support</li></ul><button class="btn-primary upgrade-btn" data-plan="lifetime">Limited Offer</button></div></div></div>
+                <div id="settingsView" class="view-container hidden"><div class="glass-card"><h2><i class="fas fa-user-cog"></i> Account Preferences</h2><div class="settings-item"><label>Current Plan</label><div class="settings-value"><span id="settingsPlan">Free</span><button class="tiny-btn" id="settingsUpgradeBtn">Upgrade</button></div></div><div class="settings-item"><label>Email Address</label><span id="settingsEmail">user@example.com</span></div><div class="settings-item"><label>New Password</label><input type="password" id="newPassword" placeholder="Enter new password" style="width:100%; padding:0.75rem; background:rgba(255,255,255,0.05); border:1px solid var(--glass-border); border-radius:0.75rem; color:white;"><button class="secondary-btn" id="changePasswordBtn" style="margin-top:0.5rem;">Update Password</button></div><hr><button class="danger-btn" id="settingsLogoutBtn"><i class="fas fa-sign-out-alt"></i> Logout</button></div></div>
             </div>
         </main>
     </div>
-
     <div id="toastContainer" class="toast-container"></div>
-    
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-    <script src="app.js"></script>
+    <script>
+        // CONFIGURATION - CONNECTED TO LIVE BACKEND
+        const SUPABASE_URL = 'https://kuopksuayithapkgsnps.supabase.co';
+        const SUPABASE_ANON_KEY = 'sb_publishable_eJvdtRzxW83rVOqosf3sYg_kwQBROfw';
+        const BACKEND_URL = 'https://ai-project-generator-dt1o.onrender.com';
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            let supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+            let currentUser = null;
+            let userPlan = 'free';
+            let currentOutput = '';
+            
+            function getElement(id) { return document.getElementById(id); }
+            function showToast(message, type = 'info') {
+                const container = getElement('toastContainer');
+                if(!container) return;
+                const toast = document.createElement('div');
+                toast.className = 'toast';
+                toast.textContent = message;
+                if (type === 'error') toast.style.background = '#ef4444';
+                else if (type === 'success') toast.style.background = '#22c55e';
+                else toast.style.background = '#6366f1';
+                container.appendChild(toast);
+                setTimeout(() => toast.remove(), 3000);
+            }
+            
+            async function loadUserProfile() {
+                const { data: { user }, error } = await supabase.auth.getUser();
+                if(error || !user) return;
+                currentUser = user;
+                try {
+                    const { data } = await supabase.from('users').select('plan').eq('id', user.id).single();
+                    userPlan = data?.plan || 'free';
+                } catch(e) { userPlan = 'free'; }
+                const sidebarName = getElement('sidebarUserName');
+                if(sidebarName) sidebarName.textContent = user.user_metadata?.full_name || user.email;
+                const settingsEmail = getElement('settingsEmail');
+                if(settingsEmail) settingsEmail.textContent = user.email;
+                const settingsPlanSpan = getElement('settingsPlan');
+                if(settingsPlanSpan) settingsPlanSpan.textContent = userPlan === 'free' ? 'Free' : 'Pro';
+                const planIndicator = getElement('planIndicator');
+                if(planIndicator) planIndicator.innerHTML = userPlan === 'free' ? '<i class="fas fa-star"></i> Free Plan - 500 char limit' : '<i class="fas fa-crown"></i> Pro Plan - Unlimited';
+                const projectInput = getElement('projectInput');
+                if(projectInput) {
+                    if(userPlan === 'free') { projectInput.maxLength = 500; projectInput.placeholder = 'Free plan: 500 character limit. Upgrade for unlimited!'; }
+                    else { projectInput.maxLength = -1; projectInput.placeholder = 'Pro plan: Unlimited characters. Describe your project!'; }
+                }
+            }
+            
+            async function generateProject() {
+                const inputText = getElement('projectInput')?.value.trim();
+                const softwareType = getElement('softwareType')?.value;
+                if(!inputText) { showToast('Please enter a project description', 'error'); return; }
+                if(userPlan === 'free' && inputText.length > 500) { showToast('Free plan limited to 500 characters. Upgrade to Pro!', 'error'); return; }
+                const outputDiv = getElement('outputContent');
+                if(!outputDiv) return;
+                outputDiv.innerHTML = '<div style="text-align:center;padding:2rem;">Generating with AI... <i class="fas fa-spinner fa-spin"></i></div>';
+                try {
+                    const { data: { session } } = await supabase.auth.getSession();
+                    const token = session?.access_token;
+                    const response = await fetch(`${BACKEND_URL}/generate`, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json', 'Authorization': token ? `Bearer ${token}` : '' },
+                        body: JSON.stringify({ input: inputText, softwareType: softwareType, userId: currentUser?.id })
+                    });
+                    if(!response.ok) { const errData = await response.json(); throw new Error(errData.error || 'Generation failed'); }
+                    const data = await response.json();
+                    currentOutput = data.result;
+                    outputDiv.innerHTML = `<div style="line-height:1.6;">${data.result.replace(/\n/g, '<br>')}</div>`;
+                    const outputBtns = getElement('outputButtons');
+                    if(outputBtns) outputBtns.classList.remove('hidden');
+                    if(currentUser) {
+                        await supabase.from('projects').insert([{ user_id: currentUser.id, input_text: inputText, ai_result: data.result, software_type: softwareType, created_at: new Date().toISOString() }]);
+                    }
+                    showToast('Project generated successfully!', 'success');
+                } catch(error) {
+                    console.error(error);
+                    outputDiv.innerHTML = '<p style="text-align:center;color:#999;">❌ Failed to generate. Please try again.</p>';
+                    showToast('Generation failed: ' + error.message, 'error');
+                }
+            }
+            
+            async function loadHistory() {
+                const historyDiv = getElement('historyList');
+                if(!historyDiv) return;
+                if(!currentUser) { historyDiv.innerHTML = '<p style="text-align:center;">Please login to view history</p>'; return; }
+                historyDiv.innerHTML = '<div style="text-align:center;padding:2rem;">Loading...</div>';
+                try {
+                    const { data, error } = await supabase.from('projects').select('*').eq('user_id', currentUser.id).order('created_at', { ascending: false });
+                    if(error) throw error;
+                    if(!data || data.length === 0) { historyDiv.innerHTML = '<p style="text-align:center;">No projects yet. Start generating!</p>'; return; }
+                    historyDiv.innerHTML = data.map(p => `<div style="background:rgba(255,255,255,0.05);padding:1rem;margin-bottom:1rem;border-radius:0.5rem;"><div style="display:flex;justify-content:space-between;margin-bottom:0.5rem;"><strong>${escapeHtml(p.software_type)}</strong><small>${new Date(p.created_at).toLocaleString()}</small></div><div><strong>Input:</strong> ${escapeHtml(p.input_text.substring(0, 100))}${p.input_text.length > 100 ? '...' : ''}</div><div style="margin-top:0.5rem;"><strong>Output:</strong> ${escapeHtml(p.ai_result.substring(0, 150))}${p.ai_result.length > 150 ? '...' : ''}</div></div>`).join('');
+                } catch(e) { historyDiv.innerHTML = '<p style="text-align:center;">Error loading history</p>'; }
+            }
+            
+            function escapeHtml(str) { const div = document.createElement('div'); div.textContent = str; return div.innerHTML; }
+            
+            function initVoiceInput() {
+                if(!('webkitSpeechRecognition' in window)) { showToast('Voice input not supported', 'error'); return; }
+                const recognition = new webkitSpeechRecognition();
+                recognition.lang = 'en-US';
+                recognition.onstart = () => showToast('Listening... Speak now', 'info');
+                recognition.onresult = (event) => { const input = getElement('projectInput'); if(input) input.value = event.results[0][0].transcript; showToast('Voice input added!', 'success'); };
+                recognition.onerror = () => showToast('Voice recognition failed', 'error');
+                recognition.start();
+            }
+            
+            function handleFileUpload(file) {
+                if(!file || file.type !== 'text/plain') { showToast('Please upload a .txt file', 'error'); return; }
+                const reader = new FileReader();
+                reader.onload = (e) => { const input = getElement('projectInput'); if(input) input.value = e.target.result; showToast('File loaded!', 'success'); };
+                reader.onerror = () => showToast('Failed to read file', 'error');
+                reader.readAsText(file);
+            }
+            
+            function copyToClipboard() { if(currentOutput) { navigator.clipboard.writeText(currentOutput); showToast('Copied to clipboard!', 'success'); } else showToast('Nothing to copy', 'error'); }
+            function downloadAsText() { if(currentOutput) { const blob = new Blob([currentOutput], { type: 'text/plain' }); const url = URL.createObjectURL(blob); const a = document.createElement('a'); a.href = url; a.download = 'ai-generated-project.txt'; a.click(); URL.revokeObjectURL(url); showToast('Downloaded!', 'success'); } else showToast('Nothing to download', 'error'); }
+            
+            function showView(viewName) {
+                const authSec = getElement('authSection'), genView = getElement('generateView'), histView = getElement('historyView'), priceView = getElement('pricingView'), settView = getElement('settingsView');
+                if(authSec) authSec.classList.add('hidden');
+                if(genView) genView.classList.add('hidden');
+                if(histView) histView.classList.add('hidden');
+                if(priceView) priceView.classList.add('hidden');
+                if(settView) settView.classList.add('hidden');
+                if(viewName === 'generate' && genView) genView.classList.remove('hidden');
+                if(viewName === 'history' && histView) { histView.classList.remove('hidden'); loadHistory(); }
+                if(viewName === 'pricing' && priceView) priceView.classList.remove('hidden');
+                if(viewName === 'settings' && settView) settView.classList.remove('hidden');
+                document.querySelectorAll('.nav-item').forEach(btn => btn.classList.remove('active'));
+                const activeBtn = document.querySelector(`[data-view="${viewName}"]`);
+                if(activeBtn) activeBtn.classList.add('active');
+            }
+            
+            supabase.auth.onAuthStateChange(async (event, session) => {
+                if(event === 'SIGNED_IN') { await loadUserProfile(); if(getElement('authSection')) getElement('authSection').classList.add('hidden'); showView('generate'); if(getElement('loginHeaderBtn')) getElement('loginHeaderBtn').classList.add('hidden'); if(getElement('signupHeaderBtn')) getElement('signupHeaderBtn').classList.add('hidden'); if(getElement('profileIcon')) getElement('profileIcon').classList.remove('hidden'); }
+                if(event === 'SIGNED_OUT') { currentUser = null; if(getElement('authSection')) getElement('authSection').classList.remove('hidden'); if(getElement('loginCard')) getElement('loginCard').classList.remove('hidden'); if(getElement('signupCard')) getElement('signupCard').classList.add('hidden'); if(getElement('loginHeaderBtn')) getElement('loginHeaderBtn').classList.remove('hidden'); if(getElement('signupHeaderBtn')) getElement('signupHeaderBtn').classList.remove('hidden'); if(getElement('profileIcon')) getElement('profileIcon').classList.add('hidden'); }
+            });
+            
+            getElement('loginForm')?.addEventListener('submit', async (e) => { e.preventDefault(); const email = getElement('loginEmail')?.value, pwd = getElement('loginPassword')?.value; if(email && pwd) { try { await supabase.auth.signInWithPassword({ email, password: pwd }); } catch(err) { showToast('Login failed: '+err.message,'error'); } } });
+            getElement('signupForm')?.addEventListener('submit', async (e) => { e.preventDefault(); const name = getElement('signupName')?.value, email = getElement('signupEmail')?.value, pwd = getElement('signupPassword')?.value; if(name && email && pwd) { try { const { data, error } = await supabase.auth.signUp({ email, password: pwd, options: { data: { full_name: name, plan: 'free' } } }); if(error) throw error; if(data.user) { await supabase.from('users').insert([{ id: data.user.id, email, full_name: name, plan: 'free' }]); } showToast('Account created! Please check email.', 'success'); } catch(err) { showToast('Signup failed: '+err.message,'error'); } } });
+            getElement('generateBtn')?.addEventListener('click', generateProject);
+            getElement('voiceInputBtn')?.addEventListener('click', initVoiceInput);
+            getElement('copyOutputBtn')?.addEventListener('click', copyToClipboard);
+            getElement('downloadOutputBtn')?.addEventListener('click', downloadAsText);
+            getElement('fileUploadBtn')?.addEventListener('click', () => getElement('txtFileInput')?.click());
+            getElement('txtFileInput')?.addEventListener('change', (e) => { if(e.target.files[0]) handleFileUpload(e.target.files[0]); });
+            getElement('logoutBtn')?.addEventListener('click', () => supabase.auth.signOut());
+            getElement('settingsLogoutBtn')?.addEventListener('click', () => supabase.auth.signOut());
+            getElement('changePasswordBtn')?.addEventListener('click', async () => { const newPwd = getElement('newPassword')?.value; if(newPwd && newPwd.length >= 6) { try { await supabase.auth.updateUser({ password: newPwd }); showToast('Password updated!', 'success'); if(getElement('newPassword')) getElement('newPassword').value = ''; } catch(e) { showToast('Error: '+e.message,'error'); } } else showToast('Password must be 6+ chars','error'); });
+            document.querySelectorAll('.nav-item').forEach(btn => btn.addEventListener('click', () => { const view = btn.getAttribute('data-view'); if(view) showView(view); }));
+            getElement('showSignupLink')?.addEventListener('click', (e) => { e.preventDefault(); if(getElement('loginCard')) getElement('loginCard').classList.add('hidden'); if(getElement('signupCard')) getElement('signupCard').classList.remove('hidden'); });
+            getElement('showLoginLink')?.addEventListener('click', (e) => { e.preventDefault(); if(getElement('signupCard')) getElement('signupCard').classList.add('hidden'); if(getElement('loginCard')) getElement('loginCard').classList.remove('hidden'); });
+            getElement('pricingHeaderBtn')?.addEventListener('click', () => { if(currentUser) showView('pricing'); else showToast('Please login first', 'error'); });
+            getElement('loginHeaderBtn')?.addEventListener('click', () => { if(getElement('authSection')) getElement('authSection').classList.remove('hidden'); if(getElement('loginCard')) getElement('loginCard').classList.remove('hidden'); if(getElement('signupCard')) getElement('signupCard').classList.add('hidden'); });
+            getElement('signupHeaderBtn')?.addEventListener('click', () => { if(getElement('authSection')) getElement('authSection').classList.remove('hidden'); if(getElement('signupCard')) getElement('signupCard').classList.remove('hidden'); if(getElement('loginCard')) getElement('loginCard').classList.add('hidden'); });
+            getElement('settingsUpgradeBtn')?.addEventListener('click', () => showView('pricing'));
+            getElement('mobileMenuToggle')?.addEventListener('click', () => getElement('sidebar')?.classList.toggle('active'));
+            supabase.auth.getSession().then(({ data: { session } }) => { if(session) { loadUserProfile().then(() => { if(getElement('authSection')) getElement('authSection').classList.add('hidden'); showView('generate'); }); } else { if(getElement('authSection')) getElement('authSection').classList.remove('hidden'); } });
+        });
+    </script>
 </body>
 </html>
